@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "188967129357",
+    "project_id": "edadeda-8ae90",
+    "storage_bucket": "edadeda-8ae90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188967129357:android:86fb37ec2c292ee4892044",
+        "android_client_info": {
+          "package_name": "com.example.edadeda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188967129357-19mucbunpcfnkmp7uemgaj5tm34qbpq2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsD469mG-0rIxINrXhiGzVqtL5S5Ds9Gc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188967129357-19mucbunpcfnkmp7uemgaj5tm34qbpq2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

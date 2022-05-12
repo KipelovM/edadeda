@@ -1,28 +1,36 @@
 package com.example.edadeda
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.edadeda.databinding.ItemBinding
 
-class MyAdapter(val posts: List<Recept>) : RecyclerView.Adapter<MyAdapter.ViewRoll>() {
-
-    class ViewRoll(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewRoll {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemBinding.inflate(inflater, parent, false)
-        return ViewRoll(binding)
+class MyAdapter: RecyclerView.Adapter<MyAdapter.MyHolder>() {
+    val receptes = ArrayList<Recept>()
+    class MyHolder(item: View) : RecyclerView.ViewHolder(item){
+        private val binding = ItemBinding.bind(item)
+        fun bind(rec: Recept) = with(binding){
+            textView.text = rec.name
+            textView2.text = rec.user.name
+            textView3.text = rec.description
+        }
     }
 
-    override fun onBindViewHolder(holder: ViewRoll, position: Int) {
-        val post = posts[position]
-        holder.binding.textView.text = post.name
-        holder.binding.textView2.text = post.user.name
-        holder.binding.textView3.text = post.description
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
+        val view =  LayoutInflater.from(parent.context).inflate(R.layout.item,parent,false)
+        return MyHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: MyHolder, position: Int) {
+        holder.bind(receptes[position])
     }
 
     override fun getItemCount(): Int {
-        return posts.size
+        return receptes.size
+    }
+    fun addRecept(rec: Recept){
+        receptes.add(rec)
+        notifyDataSetChanged()
     }
 }
