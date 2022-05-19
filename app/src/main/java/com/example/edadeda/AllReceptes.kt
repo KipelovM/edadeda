@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.edadeda.databinding.FragmentAllReceptesBinding
@@ -22,6 +23,7 @@ private var receptes = ArrayList<Recept>()
 
 class AllReceptes : Fragment() {
     private lateinit var binding: FragmentAllReceptesBinding
+    private val dataModel: DataModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -61,17 +63,18 @@ class AllReceptes : Fragment() {
         val bAdd = binding.bAdd
 
         bAdd.setOnClickListener {
-            val rec = Recept("1","NAMEexmp","1","DescriptionEXMP")
-            db.collection(REC_KEY)
-                .add(rec)
-                .addOnSuccessListener { documentReference ->
-                    Log.d("bebra", "DocumentSnapshot added with ID: ${documentReference.id}")
-                    Toast.makeText(context?.applicationContext, "successes", Toast.LENGTH_LONG).show()
-                }
-                .addOnFailureListener { e ->
-                    Log.w(ContentValues.TAG, "Error adding document", e)
-                    Toast.makeText(context?.applicationContext, "fail", Toast.LENGTH_LONG).show()
-                }
+            dataModel.curFragment.value = ReceptView()
+//            val rec = Recept("1","NAMEexmp","1","DescriptionEXMP")
+//            db.collection(REC_KEY)
+//                .add(rec)
+//                .addOnSuccessListener { documentReference ->
+//                    Log.d("bebra", "DocumentSnapshot added with ID: ${documentReference.id}")
+//                    Toast.makeText(context?.applicationContext, "successes", Toast.LENGTH_LONG).show()
+//                }
+//                .addOnFailureListener { e ->
+//                    Log.w(ContentValues.TAG, "Error adding document", e)
+//                    Toast.makeText(context?.applicationContext, "fail", Toast.LENGTH_LONG).show()
+//                }
         }
 
         rw1.layoutManager = LinearLayoutManager(this.context)

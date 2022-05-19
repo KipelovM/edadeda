@@ -25,8 +25,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
+        dataModel.curFragment.value = AllReceptes()
         setContentView(binding.root)
-        openFrag( AllReceptes())
+        dataModel.curFragment.observe(this) {
+            openFrag(it)
+        }
 
     }
     private fun openFrag(f: Fragment){
