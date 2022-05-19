@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.edadeda.databinding.ItemBinding
+import com.example.edadeda.databinding.ReceptItemBinding
 
 class MyAdapter: RecyclerView.Adapter<MyAdapter.MyHolder>() {
 
@@ -14,7 +14,7 @@ class MyAdapter: RecyclerView.Adapter<MyAdapter.MyHolder>() {
 
 
     class MyHolder(item: View) : RecyclerView.ViewHolder(item){
-        private val binding = ItemBinding.bind(item)
+        private val binding = ReceptItemBinding.bind(item)
         fun bind(rec: Recept) = with(binding){
             textView.text = rec.name
             textView2.text = rec.userId
@@ -23,7 +23,7 @@ class MyAdapter: RecyclerView.Adapter<MyAdapter.MyHolder>() {
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        val view =  LayoutInflater.from(parent.context).inflate(R.layout.item,parent,false)
+        val view =  LayoutInflater.from(parent.context).inflate(R.layout.recept_item,parent,false)
         return MyHolder(view)
     }
 
@@ -35,9 +35,13 @@ class MyAdapter: RecyclerView.Adapter<MyAdapter.MyHolder>() {
         return receptes.size
     }
     fun addRecept(rec: Recept){
-        receptes.add(rec)
-        Log.d("bebra", "recept added${receptes.size}")
+
+        if(rec.id !in receptes.map{ it.id }){
+            receptes.add(rec)
+        }
         notifyDataSetChanged()
+        Log.d("bebra", "recept added ${receptes.size}")
     }
+
 
 }
