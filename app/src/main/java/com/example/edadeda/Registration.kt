@@ -61,7 +61,7 @@ class Registration : Fragment() {
                     email = etEmail.text.toString()
                     password = etPassword.text.toString()
                 }
-                if (name != null && email != null && password != null && uri != null) {
+                if (name != "" && email != "" && password != "" && uri != null) {
                     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful) {
                             binding.ivRegAvtr.isDrawingCacheEnabled = true

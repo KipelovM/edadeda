@@ -53,20 +53,6 @@ class Auth : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        db.collection(USR_KEY).get()
-            .addOnSuccessListener { result ->
-                users.clear()
-                for (document in result) {
-                    val usrMap = document.data.toMap()
-                    val usr = User(usrMap["id"] as String,usrMap["name"] as String,usrMap["photo"] as String,usrMap["mail"] as String)
-                    users.add(usr)
-                    Log.d("bebra", "${document.id} => ${document.data}")
-
-
-
-                }
-                Toast.makeText(context?.applicationContext, "added!", Toast.LENGTH_LONG).show()
-            }
         binding = FragmentAuthBinding.inflate(inflater)
         return binding.root
     }
@@ -130,7 +116,6 @@ class Auth : Fragment() {
         val email = binding.editTextTextEmailAddress.text.toString()
         val password = binding.editTextTextPassword.text.toString()
         if(email.isNotEmpty() && password.isNotEmpty()){
-
             auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this@Auth.requireActivity()){
                 if(it.isSuccessful){
                     Toast.makeText(context?.applicationContext, "SingUp successful", Toast.LENGTH_SHORT).show()

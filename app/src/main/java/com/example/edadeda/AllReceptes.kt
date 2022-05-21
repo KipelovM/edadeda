@@ -37,7 +37,7 @@ class AllReceptes : Fragment() {
                 for (document in result) {
                     db.collection(REC_KEY).document(document.id).update(mapOf("id" to document.id))
                     val recMap = document.data.toMap()
-                    val rec = Recept(document.id,recMap["name"] as String,recMap["userId"] as String,recMap["description"] as String)
+                    val rec = Recept(document.id,recMap["name"] as String,recMap["userName"] as String,recMap["description"] as String)
                     receptes.add(rec)
                     myAdapter.addRecept(rec)
                     Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
@@ -68,15 +68,11 @@ class AllReceptes : Fragment() {
         val bAdd = binding.bAdd
 
         bAdd.setOnClickListener {
-            val rec = Recept("1","NAMEexmp","1","DescriptionEXMP")
-            db.collection(REC_KEY)
-                .add(rec)
-                .addOnSuccessListener { documentReference ->
-                    Log.d("bebra", "DocumentSnapshot added with ID: ${documentReference.id}")
-                }
-                .addOnFailureListener { e ->
-                    Log.w(ContentValues.TAG, "Error adding document", e)
-                }
+            this@AllReceptes.requireActivity().supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.mainFrm,CreateRecept())
+                .addToBackStack(null)
+                .commit()
         }
 
         rw1.layoutManager = LinearLayoutManager(this.context)

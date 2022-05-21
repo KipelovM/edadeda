@@ -14,7 +14,6 @@ import com.google.firebase.ktx.Firebase
 
 
 const val REC_KEY = "RECEPTES"
-const val USR_KEY = "USERS"
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private val db = Firebase.firestore
     private lateinit var user: User
+    val mainModel = MainModel()
+    val epModel = EPModel()
     lateinit var app: App
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -47,11 +48,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = applicationContext as App
+        mainModel.ab?.value = supportActionBar
         val binding = ActivityMainBinding.inflate(layoutInflater)
         auth = Firebase.auth
         setContentView(binding.root)
         openFrag(Auth())
         val fragManag = supportFragmentManager
+        epModel.up.observe(this){
+            if(it){
+                setUpActionBar()
+                epModel.up.value = false
+            }
+        }
         authModel.isAuth.observe(this) {
             if(it){
                 setUpActionBar()
@@ -88,6 +96,8 @@ class MainActivity : AppCompatActivity() {
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.setHomeAsUpIndicator(getDrawable(R.drawable.ic_launcher_foreground))
         ab?.title = auth.currentUser?.displayName.toString()
+        ab?.hide()
+        ab?.show()
     }
 }
 

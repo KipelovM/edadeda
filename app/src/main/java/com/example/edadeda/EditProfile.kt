@@ -20,6 +20,7 @@ class EditProfile : Fragment() {
     lateinit var binding: FragmentEditProfileBinding
     lateinit var auth: FirebaseAuth
     val epModel = EPModel()
+    val mainModel = MainModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,8 +43,9 @@ class EditProfile : Fragment() {
         auth = Firebase.auth
         binding = FragmentEditProfileBinding.inflate(inflater)
         binding.apply {
-            ivRegAvtr.setImageURI(auth.currentUser?.photoUrl)
-            epModel.avtrUri.value = auth.currentUser?.photoUrl
+//            ivRegAvtr.setImageURI(auth.currentUser?.photoUrl)
+            ivRegAvtr.setImageDrawable(this@EditProfile.activity?.getDrawable(R.drawable.ic_launcher_foreground))
+//            epModel.avtrUri.value = auth.currentUser?.photoUrl
             etName.hint = auth.currentUser?.displayName
             btnChgImg.setOnClickListener {
                 val intent = Intent()
@@ -53,15 +55,16 @@ class EditProfile : Fragment() {
             }
             btnEdit.setOnClickListener {
                 var name = auth.currentUser?.displayName
-                var uri = auth.currentUser?.photoUrl
-                uri = epModel.avtrUri.value
+//                var uri = auth.currentUser?.photoUrl
+//                uri = epModel.avtrUri.value
                 name = binding.etName.text.toString()
                 auth.currentUser?.updateProfile(
                     UserProfileChangeRequest.Builder().setDisplayName(name).build()
                 )
-                auth.currentUser?.updateProfile(
-                    UserProfileChangeRequest.Builder().setPhotoUri(uri).build()
-                )
+//                auth.currentUser?.updateProfile(
+//                    UserProfileChangeRequest.Builder().setPhotoUri(uri).build()
+//                )
+
                 Toast.makeText(context?.applicationContext, "Edited!", Toast.LENGTH_SHORT).show()
             }
         }

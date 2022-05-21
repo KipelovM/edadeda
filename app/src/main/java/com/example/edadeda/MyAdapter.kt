@@ -23,7 +23,7 @@ class MyAdapter(): RecyclerView.Adapter<MyAdapter.MyHolder>() {
         }
         fun bind(rec: Recept) = with(binding){
             textView.text = rec.name
-            textView2.text = rec.userId
+            textView2.text = rec.userName
             textView3.text = rec.description
             imageView.setImageResource(R.drawable.ic_launcher_foreground)
 

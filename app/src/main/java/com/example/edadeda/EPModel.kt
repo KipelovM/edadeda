@@ -8,4 +8,8 @@ class EPModel:ViewModel() {
     val avtrUri: MutableLiveData<Uri> by lazy {
         MutableLiveData<Uri>()
     }
+    val up: MutableLiveData<Boolean> = MutableLiveData(false)
+    fun update(){
+        up.value = true
+    }
 }
