@@ -9,14 +9,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btnReg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#C0D5A8">
 
         <EditText
             android:id="@+id/etName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#DFECD0"
+            android:backgroundTint="#DFECD0"
             android:ems="10"
-            android:hint="nickName"
+            android:hint=" nickName"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,8 +44,11 @@
         <ImageButton
             android:id="@+id/btnChgImg"
             style="@android:style/Widget.DeviceDefault.ImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/image_button"
             android:minHeight="48dp"
             android:scrollbarSize="24dp"
             android:src="@drawable/ic_chose_img"
@@ -54,6 +60,7 @@
             android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#EF7676"
             android:text="Edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
