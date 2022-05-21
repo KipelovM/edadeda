@@ -2,4 +2,6 @@
 <resources>
     <color name="main_background">#FFE4E1</color>
     <color name="add_recipe">#BC8F8F</color>
+    <color name="acba">#EF7676</color>
+    <color name="acbaVerh">#ED5252</color>
 </resources>
