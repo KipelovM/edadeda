@@ -1,5 +1,6 @@
 package com.example.edadeda
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -27,7 +28,7 @@ class Auth : Fragment() {
     private lateinit var launcher: ActivityResultLauncher<Intent>
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: FragmentAuthBinding
-    private val rvModel: RVModel by activityViewModels()
+    //private val dataModel: DataModel by activityViewModels()
     private val db = Firebase.firestore
     private val users = ArrayList<User>()
     private lateinit var singInClient:GoogleSignInClient
@@ -52,7 +53,7 @@ class Auth : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         db.collection(USR_KEY).get()
             .addOnSuccessListener { result ->
                 users.clear()
@@ -78,14 +79,7 @@ class Auth : Fragment() {
             singInWithGoogle()
         }
         binding.sIn.setOnClickListener{
-            firebaseESI()
-        }
-        binding.butRegAuth.setOnClickListener{
-            this@Auth.requireActivity().supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.mainFrm,Registration())
-                .addToBackStack(null)
-                .commit()
+            registration()
         }
 
     }
@@ -108,6 +102,9 @@ class Auth : Fragment() {
         auth.signInWithCredential(credential).addOnCompleteListener {
             if(it.isSuccessful){
                 Toast.makeText(context?.applicationContext, "SingIn Successes", Toast.LENGTH_SHORT).show()
+                if(auth.currentUser?.uid.toString() !in users.map{ usr-> usr.id }){
+                    db.collection(USR_KEY).document(auth.currentUser!!.uid).set(User(auth.currentUser!!.uid,auth.currentUser!!.displayName.toString(),auth.currentUser!!.photoUrl.toString(),auth.currentUser!!.email.toString()))
+                }
                 checkSI()
             }
             else{
@@ -125,7 +122,7 @@ class Auth : Fragment() {
                 .commit()
         }
     }
-    private fun firebaseESI(){
+    private fun registration(){
         val email = binding.editTextTextEmailAddress.text.toString()
         val password = binding.editTextTextPassword.text.toString()
         if(email.isNotEmpty() && password.isNotEmpty()){
@@ -133,7 +130,7 @@ class Auth : Fragment() {
             auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this@Auth.requireActivity()){
                 if(it.isSuccessful){
                     Toast.makeText(context?.applicationContext, "SingUp successful", Toast.LENGTH_SHORT).show()
-                    checkSI()
+
                 }
                 else{
                     Toast.makeText(context?.applicationContext, it.exception?.message, Toast.LENGTH_SHORT).show()

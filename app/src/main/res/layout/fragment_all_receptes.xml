@@ -21,7 +21,7 @@
         android:id="@+id/bAdd"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="@drawable/button_add_recipe"
+        android:backgroundTint="#F46060"
         android:textColor="@color/white"
         android:text="add recept exp"
         app:layout_constraintBottom_toBottomOf="parent"
