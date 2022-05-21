@@ -11,7 +11,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/main_background"
+        android:background="#DFECD0"
         app:layout_constraintBottom_toTopOf="@+id/bAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,12 +20,11 @@
     <Button
         android:id="@+id/bAdd"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#F46060"
-        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#ED5252"
         android:text="add recept exp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

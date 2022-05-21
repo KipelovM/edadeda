@@ -13,15 +13,17 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#C0D5A8">
 
             <TextView
                 android:id="@+id/tvUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:text="UserName"
                 app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintHorizontal_bias="0.467"
                 app:layout_constraintStart_toStartOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -29,6 +31,8 @@
                 android:id="@+id/tvRecName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#DFECD0"
+                android:backgroundTint="#DFECD0"
                 android:text="RecName"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/tvUserName"
@@ -51,6 +55,7 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#DFECD0"
             android:paddingLeft="20dp"
             android:paddingTop="20dp"
             android:paddingRight="20dp"
