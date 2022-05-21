@@ -11,7 +11,7 @@ import com.example.edadeda.databinding.FragmentReceptViewBinding
 
 class ReceptView : Fragment() {
     private lateinit var binding: FragmentReceptViewBinding
-    private val dataModel: DataModel by activityViewModels()
+    private val rvModel: RVModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class ReceptView : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentReceptViewBinding.inflate(inflater)
-        dataModel.curRecept.observe(this.viewLifecycleOwner) {rec ->
+        rvModel.curRecept.observe(this.viewLifecycleOwner) { rec ->
             binding.apply {
                 tvRecName.text = rec.name
                 tvUserName.text = rec.userId
