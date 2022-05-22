@@ -77,7 +77,9 @@
             style="@android:style/Widget.DeviceDefault.ImageButton"
             android:layout_width="38dp"
             android:layout_height="38dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="48dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/image_button"
             android:minHeight="48dp"
@@ -85,6 +87,10 @@
             android:src="@drawable/ic_chose_img"
             app:layout_constraintBottom_toBottomOf="@+id/ivRegAvtr"
             app:layout_constraintEnd_toEndOf="@+id/ivRegAvtr"
+            app:layout_constraintHorizontal_bias="0.544"
+            app:layout_constraintStart_toEndOf="@+id/ivRegAvtr"
+            app:layout_constraintTop_toBottomOf="@+id/ivRegAvtr"
+            app:layout_constraintVertical_bias="0.434"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
