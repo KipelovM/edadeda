@@ -19,8 +19,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
-
+var curRec = Recept("","","","","","")
 const val REC_KEY = "RECEPTES"
+const val USER_KEY = "USERS"
 
 class MainActivity : AppCompatActivity() {
     private val authModel: AuthModel by viewModels()

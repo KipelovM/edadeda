@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.edadeda.databinding.ReceptItemBinding
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -25,14 +26,18 @@ class MyAdapter(): RecyclerView.Adapter<MyAdapter.MyHolder>() {
             }
         }
         fun bind(rec: Recept){
-
+            db.collection(USER_KEY).document(rec.userId).get().addOnCompleteListener {
+                if(it.isSuccessful){
+                    binding.textView2.text  = "by: ${it.result["name"]}"
+                }
+            }
             binding.apply {
                 textView.text = rec.name
-                textView2.text  = "by: ${rec.userName}"
+
                 textView3.text = rec.description
             }
             Firebase.storage.reference.child(rec.userId).downloadUrl.addOnCompleteListener {
-                Glide.with(binding.root).load(it.result.toString()).into(binding.imageView)
+                Glide.with(binding.root).load(it.result.toString()).apply(RequestOptions().override(150, 150)).circleCrop().into(binding.imageView)
                 binding.progressBar.visibility = View.GONE
             }
 

@@ -10,8 +10,8 @@ import com.google.firebase.ktx.Firebase
 class CRModel:ViewModel() {
     val db = Firebase.firestore
     val auth = Firebase.auth
-    fun createRecept(recName:String,recDscript:String){
-        val rec = Recept("1",recName,auth.currentUser?.uid.toString(),auth.currentUser?.displayName.toString(),recDscript)
+    fun createRecept(recName:String,recDscript:String,recIngr:String){
+        val rec = Recept("1",recName,auth.currentUser?.uid.toString(),auth.currentUser?.displayName.toString(),recDscript,recIngr)
         db.collection(REC_KEY)
             .add(rec)
             .addOnSuccessListener { documentReference ->

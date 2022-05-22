@@ -1,5 +1,6 @@
 package com.example.edadeda
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -104,6 +105,24 @@ class Auth : Fragment() {
 
     private fun checkSI(){
         if(auth.currentUser != null){
+            val usr = User(
+                auth.currentUser?.uid.toString(),
+                auth.currentUser?.displayName.toString(),
+                auth.currentUser?.photoUrl.toString(),
+                auth.currentUser?.email.toString()
+                )
+            db.collection(USER_KEY).document(auth.currentUser?.uid.toString()).get().addOnCompleteListener {
+                if(!it.result.exists()){
+                    db.collection(USER_KEY).document(auth.currentUser?.uid.toString()).set(usr)
+                        .addOnSuccessListener {
+                            Log.d("bebra", "User added")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(ContentValues.TAG, "Error adding document", e)
+                        }
+                }
+            }
+
             authModel.isAuth.value=true
             this@Auth.requireActivity().supportFragmentManager
                 .beginTransaction()

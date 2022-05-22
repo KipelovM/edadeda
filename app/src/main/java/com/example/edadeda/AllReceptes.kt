@@ -15,7 +15,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 private lateinit var rw1: RecyclerView
-private val db = Firebase.firestore
+val db = Firebase.firestore
 private lateinit var myAdapter:MyAdapter
 private var receptes = ArrayList<Recept>()
 
@@ -38,8 +38,8 @@ class AllReceptes : Fragment() {
                 for (document in result) {
                     db.collection(REC_KEY).document(document.id).update(mapOf("id" to document.id))
                     val recMap = document.data.toMap()
-                    if(recMap["name"] != null && recMap["userId"] != null &&  recMap["userName"] != null && recMap["description"] != null){
-                        val rec = Recept(document.id,recMap["name"] as String,recMap["userId"] as String,recMap["userName"] as String,recMap["description"] as String)
+                    if(recMap["name"] != null && recMap["userId"] != null && recMap["ingr"] != null &&  recMap["userName"] != null && recMap["description"] != null){
+                        val rec = Recept(document.id,recMap["name"] as String,recMap["userId"] as String,recMap["userName"] as String,recMap["description"] as String,recMap["ingr"] as String)
                         receptes.add(rec)
                         myAdapter.addRecept(rec)
                     }
@@ -62,6 +62,12 @@ class AllReceptes : Fragment() {
 
         return binding.root
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = this.requireActivity() as MainActivity
+        activity.setUpActionBar()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

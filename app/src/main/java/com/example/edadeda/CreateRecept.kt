@@ -24,12 +24,14 @@ class CreateRecept : Fragment() {
         binding.btnCreate.setOnClickListener{
             var des:String
             var name:String
+            var recIngr:String
             binding.apply {
                 des = etDscript.text.toString()
                 name = etRecName.text.toString()
+                recIngr = etIngr.text.toString()
             }
             if(des != "" && name != ""){
-                crModel.createRecept(name,des)
+                crModel.createRecept(name,des,recIngr)
                 Toast.makeText(context?.applicationContext, "Recept Created", Toast.LENGTH_SHORT).show()
                 this@CreateRecept.requireActivity().supportFragmentManager
                     .beginTransaction()
