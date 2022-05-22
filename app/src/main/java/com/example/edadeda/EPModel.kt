@@ -1,15 +1,21 @@
 package com.example.edadeda
 
 import android.net.Uri
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class EPModel:ViewModel() {
-    val avtrUri: MutableLiveData<Uri> by lazy {
-        MutableLiveData<Uri>()
-    }
-    val up: MutableLiveData<Boolean> = MutableLiveData(false)
-    fun update(){
-        up.value = true
+    val fsRef = Firebase.storage.reference
+    fun uploadImage(uri:Uri,path:String){
+        fsRef.child(path).putFile(uri).addOnCompleteListener {
+            if(it.isSuccessful){
+                Log.d("bebra","file Uploaded( typo:${it.result.metadata?.contentType} size:${it.result.metadata?.sizeBytes}")
+            }
+            else{
+                Log.d("bebra",it.exception?.message.toString())
+            }
+        }
     }
 }

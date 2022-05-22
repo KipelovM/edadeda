@@ -8,55 +8,38 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#C0D5A8">
-
-        <ImageView
-            android:id="@+id/ivRecIMG"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+        android:layout_height="match_parent">
 
         <EditText
             android:id="@+id/etDscript"
-            android:layout_width="384dp"
-            android:layout_height="486dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
-            android:background="#EAAEAE"
+            android:background="#00000000"
             android:ems="10"
             android:gravity="top|left"
+            android:hint="New Recept Description"
             android:inputType="textPersonName"
-            android:text=" Name"
-            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/btnCreate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivRecIMG"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/etRecName"
+            app:layout_constraintVertical_bias="0.052" />
 
         <EditText
             android:id="@+id/etRecName"
-            android:layout_width="225dp"
-            android:layout_height="48dp"
-            android:background="#DFECD0"
-            android:backgroundTint="#DFECD0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
             android:ems="10"
+            android:hint="New Recept Name"
             android:inputType="textPersonName"
-            android:text=" Name"
-            android:textColor="#C62828"
-            app:layout_constraintBottom_toBottomOf="@+id/ivRecIMG"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.738"
-            app:layout_constraintStart_toEndOf="@+id/ivRecIMG"
-            app:layout_constraintTop_toTopOf="@+id/ivRecIMG"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnCreate"

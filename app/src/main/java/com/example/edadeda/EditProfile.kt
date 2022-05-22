@@ -14,11 +14,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class EditProfile : Fragment() {
 
     lateinit var binding: FragmentEditProfileBinding
     lateinit var auth: FirebaseAuth
+    val frStore = Firebase.storage.reference
     val epModel = EPModel()
     val mainModel = MainModel()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +31,8 @@ class EditProfile : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 1 && data != null && data.data != null) if(resultCode == Activity.RESULT_OK){
-            Log.d("bebra","img url:${data.data}")
-            epModel.avtrUri.value = data.data
+            Log.d("bebra","img uri:${data.data}")
+            epModel.uploadImage(data.data!!,auth.currentUser!!.uid)
             binding.ivRegAvtr.setImageURI(data.data)
         }
 
@@ -44,8 +46,6 @@ class EditProfile : Fragment() {
         binding = FragmentEditProfileBinding.inflate(inflater)
         binding.apply {
 //            ivRegAvtr.setImageURI(auth.currentUser?.photoUrl)
-            ivRegAvtr.setImageDrawable(this@EditProfile.activity?.getDrawable(R.drawable.ic_launcher_foreground))
-//            epModel.avtrUri.value = auth.currentUser?.photoUrl
             etName.hint = auth.currentUser?.displayName
             btnChgImg.setOnClickListener {
                 val intent = Intent()
@@ -54,18 +54,33 @@ class EditProfile : Fragment() {
                 startActivityForResult(intent, 1)
             }
             btnEdit.setOnClickListener {
+                val activity = requireActivity() as MainActivity
                 var name = auth.currentUser?.displayName
-//                var uri = auth.currentUser?.photoUrl
-//                uri = epModel.avtrUri.value
+                var url = auth.currentUser?.photoUrl
+                frStore.child(auth.currentUser?.uid.toString()).downloadUrl.addOnCompleteListener{
+                    if(it.isSuccessful){
+                        url = it.result
+                        Log.d("bebra","got url: ${it.result}")
+                    }
+
+                }
                 name = binding.etName.text.toString()
                 auth.currentUser?.updateProfile(
                     UserProfileChangeRequest.Builder().setDisplayName(name).build()
                 )
-//                auth.currentUser?.updateProfile(
-//                    UserProfileChangeRequest.Builder().setPhotoUri(uri).build()
-//                )
+                auth.currentUser?.updateProfile(
+                    UserProfileChangeRequest.Builder().setPhotoUri(url).build()
+                )?.addOnCompleteListener {
+                    activity.setUpActionBar()
+                    this@EditProfile.activity?.supportFragmentManager?.beginTransaction()
+                        ?.replace(R.id.mainFrm,AllReceptes())
+                        ?.addToBackStack(null)
+                        ?.commit()
+                }
 
                 Toast.makeText(context?.applicationContext, "Edited!", Toast.LENGTH_SHORT).show()
+
+
             }
         }
         return binding.root

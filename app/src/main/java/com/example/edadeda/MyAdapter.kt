@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.edadeda.databinding.ReceptItemBinding
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class MyAdapter(): RecyclerView.Adapter<MyAdapter.MyHolder>() {
 
@@ -21,14 +24,21 @@ class MyAdapter(): RecyclerView.Adapter<MyAdapter.MyHolder>() {
                 listner.onItemClick(adapterPosition,)
             }
         }
-        fun bind(rec: Recept) = with(binding){
-            textView.text = rec.name
-            textView2.text = rec.userName
-            textView3.text = rec.description
-            imageView.setImageResource(R.drawable.ic_launcher_foreground)
+        fun bind(rec: Recept){
+
+            binding.apply {
+                textView.text = rec.name
+                textView2.text  = "by: ${rec.userName}"
+                textView3.text = rec.description
+            }
+            Firebase.storage.reference.child(rec.userId).downloadUrl.addOnCompleteListener {
+                Glide.with(binding.root).load(it.result.toString()).into(binding.imageView)
+                binding.progressBar.visibility = View.GONE
+            }
 
 
         }
+
     }
     fun setOnItemClickListner(listner: OnClickListner){
         myListner = listner
@@ -45,11 +55,11 @@ class MyAdapter(): RecyclerView.Adapter<MyAdapter.MyHolder>() {
     override fun getItemCount(): Int {
         return receptes.size
     }
+    fun recClear(){
+        receptes.clear()
+    }
     fun addRecept(rec: Recept){
-
-        if(rec.id !in receptes.map{ it.id }){
-            receptes.add(rec)
-        }
+        receptes.add(rec)
         notifyDataSetChanged()
         Log.d("bebra", "recept added ${receptes.size}")
     }

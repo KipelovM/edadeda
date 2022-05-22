@@ -25,7 +25,7 @@ class ReceptView : Fragment() {
         rvModel.curRecept.observe(this.viewLifecycleOwner) { rec ->
             binding.apply {
                 tvRecName.text = rec.name
-                tvUserName.text = rec.userName
+                tvUserName.text = rec.userId
                 textView4.text = rec.description
                 imageView2.setImageResource(R.drawable.ic_launcher_foreground)
             }

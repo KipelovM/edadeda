@@ -34,12 +34,16 @@ class AllReceptes : Fragment() {
         db.collection(REC_KEY).get()
             .addOnSuccessListener { result ->
                 receptes.clear()
+                myAdapter.recClear()
                 for (document in result) {
                     db.collection(REC_KEY).document(document.id).update(mapOf("id" to document.id))
                     val recMap = document.data.toMap()
-                    val rec = Recept(document.id,recMap["name"] as String,recMap["userName"] as String,recMap["description"] as String)
-                    receptes.add(rec)
-                    myAdapter.addRecept(rec)
+                    if(recMap["name"] != null && recMap["userId"] != null &&  recMap["userName"] != null && recMap["description"] != null){
+                        val rec = Recept(document.id,recMap["name"] as String,recMap["userId"] as String,recMap["userName"] as String,recMap["description"] as String)
+                        receptes.add(rec)
+                        myAdapter.addRecept(rec)
+                    }
+
                     Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
                 }
             }

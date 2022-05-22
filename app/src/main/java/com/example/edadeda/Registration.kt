@@ -2,7 +2,6 @@ package com.example.edadeda
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -66,7 +65,7 @@ class Registration : Fragment() {
                         if (it.isSuccessful) {
                             binding.ivRegAvtr.isDrawingCacheEnabled = true
                             binding.ivRegAvtr.buildDrawingCache()
-                            regModel.uploadImage(uri,binding.ivRegAvtr.drawable as BitmapDrawable,auth.currentUser?.uid.toString())
+                            regModel.uploadImage(uri,auth.currentUser?.uid.toString())
 
                             auth.currentUser?.updateProfile(
                                 UserProfileChangeRequest.Builder().setPhotoUri(regModel.avtrUri.value).build()
