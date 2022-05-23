@@ -15,6 +15,8 @@
         <entry key="app/src/main/res/drawable/button_add_recipe.xml" value="0.1015" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/loading.xml" value="0.17906591796875002" />
+        <entry key="app/src/main/res/drawable/round_corners.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/round_corners_green.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/splashscreen.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/tvcircleback.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11" />

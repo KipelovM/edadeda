@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:background="#EAAEAE"
+        android:background="@drawable/round_corners_pink"
         tools:layout_editor_absoluteX="12dp"
         tools:layout_editor_absoluteY="-2dp">
 
@@ -67,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:background="#DFECD0"
+                android:background="@drawable/round_corners_green"
                 android:backgroundTint="#DFECD0"
                 android:ellipsize="end"
                 android:padding="8dp"
