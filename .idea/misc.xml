@@ -22,10 +22,10 @@
         <entry key="app/src/main/res/layout/fragment_auth.xml" value="0.3345489501953126" />
         <entry key="app/src/main/res/layout/fragment_create_recept.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.2082275390625" />
-        <entry key="app/src/main/res/layout/fragment_recept_view.xml" value="0.2937266688193045" />
+        <entry key="app/src/main/res/layout/fragment_recept_view.xml" value="0.7991465906943045" />
         <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.29346436162503375" />
         <entry key="app/src/main/res/layout/item.xml" value="0.365625" />
-        <entry key="app/src/main/res/layout/recept_item.xml" value="0.25934970137001817" />
+        <entry key="app/src/main/res/layout/recept_item.xml" value="0.5331664580725908" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
