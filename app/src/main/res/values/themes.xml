@@ -14,12 +14,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-
+    
     <style name="SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/loading</item>
-        <item name="colorPrimaryVariant">@color/acbaVerh</item>
         <item name="colorPrimary">@color/acba</item>
+        <item name="colorPrimaryVariant">@color/acbaVerh</item>
         <item name="android:navigationBarColor">@color/acba</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
+
 </resources>
