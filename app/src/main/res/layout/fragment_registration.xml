@@ -93,8 +93,20 @@
             app:layout_constraintVertical_bias="0.434"
             tools:ignore="SpeakableTextPresentCheck" />
 
+        <ProgressBar
+            android:id="@+id/progressBar22"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationZ="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/btnReg12"
+            app:layout_constraintEnd_toEndOf="@+id/btnReg12"
+            app:layout_constraintStart_toStartOf="@+id/btnReg12"
+            app:layout_constraintTop_toTopOf="@+id/btnReg12" />
+
         <Button
-            android:id="@+id/btnEdit"
+            android:id="@+id/btnReg12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#EF7676"
@@ -104,5 +116,6 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

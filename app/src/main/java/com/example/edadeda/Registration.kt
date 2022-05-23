@@ -56,7 +56,8 @@ class Registration : Fragment() {
                 intent.action = Intent.ACTION_GET_CONTENT
                 startActivityForResult(intent, 1)
             }
-            btnReg.setOnClickListener {
+            btnReg12.setOnClickListener {
+                binding.btnReg12.isClickable = false
                 var name: String
                 var email: String
                 var password: String
@@ -67,30 +68,33 @@ class Registration : Fragment() {
                     password = etPassword.text.toString()
                 }
                 if (name != "" && email != "" && password != "" && isUri) {
+                    binding.progressBar22.visibility = View.VISIBLE
                     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful) {
+                            Log.d("bebra","user Created")
                             fsRef.child(auth.currentUser?.uid.toString()).putFile(urii!!).addOnCompleteListener { fireStore ->
                                 if(fireStore.isSuccessful){
                                     Log.d("bebra","file Uploaded( typo:${fireStore.result.metadata?.contentType} size:${fireStore.result.metadata?.sizeBytes}")
+                                    auth.currentUser?.updateProfile(
+                                        UserProfileChangeRequest.Builder().setDisplayName(name).build()
+                                    )?.addOnCompleteListener {
+                                        Log.d("bebra","name Sat")
+                                        this@Registration.requireActivity().supportFragmentManager
+                                            .beginTransaction()
+                                            .replace(R.id.mainFrm, Auth())
+                                            .addToBackStack(null)
+                                            .commit()
+                                    }
                                 }
                                 else{
                                     Log.d("bebra",it.exception?.message.toString())
-                                }
-                            }.addOnCompleteListener {
-                                auth.currentUser?.updateProfile(
-                                    UserProfileChangeRequest.Builder().setDisplayName(name).build()
-                                )?.addOnCompleteListener {
-                                    this@Registration.requireActivity().supportFragmentManager
-                                        .beginTransaction()
-                                        .replace(R.id.mainFrm, Auth())
-                                        .addToBackStack(null)
-                                        .commit()
                                 }
                             }
 
 
 
                         } else {
+                            binding.btnReg12.isClickable = true
                             Toast.makeText(
                                 context?.applicationContext,
                                 it.exception?.message,
