@@ -34,8 +34,6 @@
                 android:background="@drawable/tvcircleback"
 
                 android:backgroundTint="#EF7676"
-                android:maxWidth="250dp"
-                android:maxLines="3"
                 android:padding="6dp"
                 android:text="RecName "
                 android:textSize="24sp"
