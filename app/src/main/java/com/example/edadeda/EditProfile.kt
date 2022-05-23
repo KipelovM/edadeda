@@ -48,8 +48,10 @@ class EditProfile : Fragment() {
         auth = Firebase.auth
         binding = FragmentEditProfileBinding.inflate(inflater)
         Firebase.storage.reference.child(auth.currentUser?.uid.toString()).downloadUrl.addOnCompleteListener {
-            Glide.with(binding.root).load(it.result).centerCrop().into(binding.ivRegAvtr)
-            binding
+            if(it.isSuccessful){
+                Glide.with(binding.root).load(it.result).centerCrop().into(binding.ivRegAvtr)
+                binding
+            }
         }
 
         binding.apply {

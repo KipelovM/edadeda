@@ -34,7 +34,7 @@ class MyAdapter(): RecyclerView.Adapter<MyAdapter.MyHolder>() {
             binding.apply {
                 textView.text = rec.name
 
-                textView3.text = rec.description
+                textView3.text = rec.ingr
             }
             Firebase.storage.reference.child(rec.userId).downloadUrl.addOnCompleteListener {
                 Glide.with(binding.root).load(it.result.toString()).apply(RequestOptions().override(150, 150)).circleCrop().into(binding.imageView)

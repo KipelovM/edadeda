@@ -82,17 +82,19 @@ class MainActivity : AppCompatActivity() {
         val ab = supportActionBar
         var iDraw:Drawable
         Firebase.storage.reference.child(auth.currentUser?.uid.toString()).downloadUrl.addOnCompleteListener {
-            Glide.with(this).asDrawable().load(it.result).apply(RequestOptions().override(120, 120)).circleCrop()
-                .into(object : CustomTarget<Drawable?>() {
-                override fun onResourceReady(
-                    resource: Drawable,
-                    transition: com.bumptech.glide.request.transition.Transition<in Drawable?>?
-                ) {
-                    supportActionBar!!.setHomeAsUpIndicator(resource)
-                }
+            if(it.isSuccessful){
+                Glide.with(this).asDrawable().load(it.result).apply(RequestOptions().override(120, 120)).circleCrop()
+                    .into(object : CustomTarget<Drawable?>() {
+                        override fun onResourceReady(
+                            resource: Drawable,
+                            transition: com.bumptech.glide.request.transition.Transition<in Drawable?>?
+                        ) {
+                            supportActionBar!!.setHomeAsUpIndicator(resource)
+                        }
 
-                override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
-            })
+                        override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
+                    })
+            }
         }
         ab?.show()
 

@@ -35,7 +35,7 @@ class ChangeRecept : Fragment() {
                         val name = etRecName2.text.toString()
                         val des = etDscript2.text.toString()
                         val ingr = etIngr2.text.toString()
-                        db.collection(REC_KEY).document(curRec.id)
+                        db.collection(REC_KEY).document(curRec.id).update("name",name)
                         db.collection(REC_KEY).document(curRec.id).update("description",des)
                         db.collection(REC_KEY).document(curRec.id).update("ingr",ingr)
                         this@ChangeRecept.activity?.supportFragmentManager?.beginTransaction()

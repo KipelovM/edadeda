@@ -2,6 +2,7 @@ package com.example.edadeda
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,12 +16,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class Registration : Fragment() {
     private lateinit var binding: FragmentRegistrationBinding
     private val regModel: RegModel by activityViewModels()
     lateinit var auth: FirebaseAuth
+    val fsRef = Firebase.storage.reference
+    var urii:Uri? = null
+    var isUri = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +37,8 @@ class Registration : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 1 && data != null && data.data != null) if(resultCode == RESULT_OK){
             Log.d("bebra","img url:${data.data}")
-            regModel.avtrUri.value = data.data
+            urii = data.data
+            isUri = true
             binding.ivRegAvtr.setImageURI(data.data)
         }
 
@@ -60,27 +66,30 @@ class Registration : Fragment() {
                     email = etEmail.text.toString()
                     password = etPassword.text.toString()
                 }
-                if (name != "" && email != "" && password != "" && uri != null) {
+                if (name != "" && email != "" && password != "" && isUri) {
                     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            binding.ivRegAvtr.isDrawingCacheEnabled = true
-                            binding.ivRegAvtr.buildDrawingCache()
-                            regModel.uploadImage(uri,auth.currentUser?.uid.toString())
+                            fsRef.child(auth.currentUser?.uid.toString()).putFile(urii!!).addOnCompleteListener { fireStore ->
+                                if(fireStore.isSuccessful){
+                                    Log.d("bebra","file Uploaded( typo:${fireStore.result.metadata?.contentType} size:${fireStore.result.metadata?.sizeBytes}")
+                                }
+                                else{
+                                    Log.d("bebra",it.exception?.message.toString())
+                                }
+                            }.addOnCompleteListener {
+                                auth.currentUser?.updateProfile(
+                                    UserProfileChangeRequest.Builder().setDisplayName(name).build()
+                                )?.addOnCompleteListener {
+                                    this@Registration.requireActivity().supportFragmentManager
+                                        .beginTransaction()
+                                        .replace(R.id.mainFrm, Auth())
+                                        .addToBackStack(null)
+                                        .commit()
+                                }
+                            }
 
-                            auth.currentUser?.updateProfile(
-                                UserProfileChangeRequest.Builder().setPhotoUri(regModel.avtrUri.value).build()
-                            )
-                            auth.currentUser?.updateProfile(
-                                UserProfileChangeRequest.Builder().setDisplayName(name).build()
-                            )
-                            auth.currentUser?.updateProfile(
-                                UserProfileChangeRequest.Builder().setPhotoUri(uri).build()
-                            )
-                            this@Registration.requireActivity().supportFragmentManager
-                                .beginTransaction()
-                                .replace(R.id.mainFrm, Auth())
-                                .addToBackStack(null)
-                                .commit()
+
+
                         } else {
                             Toast.makeText(
                                 context?.applicationContext,
