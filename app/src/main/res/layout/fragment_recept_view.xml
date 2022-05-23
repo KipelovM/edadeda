@@ -33,9 +33,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/tvcircleback"
 
-                android:backgroundTint="#EF7676"
                 android:padding="6dp"
                 android:text="RecName "
+                android:textColor="@color/main_background"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/tvUserName"
                 app:layout_constraintEnd_toEndOf="parent"
