@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#EF7676">
 
+
     <FrameLayout
         android:id="@+id/mainFrm"
         android:layout_width="0dp"
