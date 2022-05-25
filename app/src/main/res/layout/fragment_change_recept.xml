@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#C0D5A8">
 
         <EditText
             android:id="@+id/etDscript2"
@@ -16,7 +17,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:background="#00000000"
+            android:background="#DFECD0"
             android:ems="10"
             android:gravity="top|left"
             android:hint="New Recept Description"
@@ -64,9 +65,10 @@
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="412dp"
+            android:layout_height="23dp"
             android:layout_marginTop="8dp"
+            android:background="#DFECD0"
             android:text="Ingredients:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etRecName2" />
