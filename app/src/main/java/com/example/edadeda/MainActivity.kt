@@ -5,6 +5,9 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
@@ -70,7 +73,6 @@ class MainActivity : AppCompatActivity() {
                 supportActionBar?.hide()
             }
         }
-
     }
     private fun openFrag(f: Fragment){
         supportFragmentManager

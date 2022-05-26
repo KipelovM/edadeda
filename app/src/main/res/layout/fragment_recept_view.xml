@@ -120,6 +120,23 @@
                 android:background="#C0D5A8"
                 android:backgroundTint="#C0D5A8">
 
+                <ImageButton
+                    android:id="@+id/like"
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="178dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="352dp"
+                    android:background="@drawable/round_corners_pink"
+                    android:padding="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/klubnichka"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <Button
                     android:id="@+id/btnDel"
                     android:layout_width="wrap_content"
@@ -139,6 +156,21 @@
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/kol_like"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="137dp"
+                    android:layout_marginBottom="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.272"
+                    app:layout_constraintStart_toEndOf="@+id/like"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.636" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

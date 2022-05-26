@@ -15,18 +15,21 @@
         <entry key="app/src/main/res/drawable/button_add_recipe.xml" value="0.1015" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/loading.xml" value="0.17906591796875002" />
+        <entry key="app/src/main/res/drawable/round_corners.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/round_corners_green.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/splashscreen.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/tvcircleback.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11" />
         <entry key="app/src/main/res/layout/add_recipe.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_all_receptes.xml" value="0.20753936767578124" />
-        <entry key="app/src/main/res/layout/fragment_auth.xml" value="0.3345489501953126" />
-        <entry key="app/src/main/res/layout/fragment_create_recept.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_auth.xml" value="0.2835235595703126" />
+        <entry key="app/src/main/res/layout/fragment_change_recept.xml" value="0.24908449477043706" />
+        <entry key="app/src/main/res/layout/fragment_create_recept.xml" value="0.40636840820312503" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.2082275390625" />
-        <entry key="app/src/main/res/layout/fragment_recept_view.xml" value="0.2851632810800645" />
+        <entry key="app/src/main/res/layout/fragment_recept_view.xml" value="0.3639892578125" />
         <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.29346436162503375" />
         <entry key="app/src/main/res/layout/item.xml" value="0.365625" />
-        <entry key="app/src/main/res/layout/recept_item.xml" value="0.5331664580725908" />
+        <entry key="app/src/main/res/layout/recept_item.xml" value="0.33154902643196577" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
